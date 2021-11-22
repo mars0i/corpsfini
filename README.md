@@ -4,7 +4,7 @@ generation using them.  ("Corps fini" is French for "finite field".)
 
 The code here is designed for learning and exploration.
 
-[If you're looking for a high-quality, efficient pseudorandom number
+If you're looking for a high-quality, efficient pseudorandom number
 generator (PRNG), this is definitely not the place to look.  If you're
 looking for a PRNG for use in simulations, statistics, or numerical
 estimation, I'd suggest using one of WELL generators developed by
@@ -14,7 +14,7 @@ are other recent generators worth considering, and a Mersenne Twister
 should be OK if it's initialized properly, as it probably is in most
 popular libraries.  If you're looking for a cryptographic pseudorandom
 number generator, I don't have advice, but good advice should be easy to
-find.]
+find.
 
 
 
