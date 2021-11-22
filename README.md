@@ -9,7 +9,7 @@ generator (PRNG), this is definitely not the place to look.  If you're
 looking for a PRNG for use in simulations, statistics, or numerical
 estimation, I'd suggest using one of WELL generators developed by
 Panneton, L'Ecuyer, and Matsumoto (Pierre L'Ecuyer's website is a good
-startig point), or an xoshiro generator from Sebastiano Vigna.  There
+starting point), or an xoshiro generator from Sebastiano Vigna.  There
 are other recent generators worth considering, and a Mersenne Twister
 should be OK if it's initialized properly, as it probably is in most
 popular libraries.  If you're looking for a cryptographic pseudorandom
