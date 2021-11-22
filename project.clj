@@ -1,7 +1,15 @@
-(defproject corpsfini "0.1.0-SNAPSHOT"
-  :description "FIXME: write description"
-  :url "http://example.com/FIXME"
-  :license {:name "EPL-2.0 OR GPL-2.0-or-later WITH Classpath-exception-2.0"
-            :url "https://www.eclipse.org/legal/epl-2.0/"}
-  :dependencies [[org.clojure/clojure "1.10.1"]]
-  :repl-options {:init-ns corpsfini.core})
+(defproject corpsfini "0.1.0"
+  :description "Code for thinking about finite fields and pseudorandomness"
+  :url "https://github.com/mars0i/corpsfini"
+  :license {:name "Gnu General Public License version 3.0"
+            :url "http://www.gnu.org/copyleft/gpl.html"}
+  :dependencies [[org.clojure/clojure "1.10.3"]
+                 [org.clojure/math.numeric-tower "0.0.4"]
+		 [io.github.nextjournal/clerk "0.3.233"]
+                 [aerial.hanami "0.15.1"]
+                 [net.mikera/core.matrix "0.62.0"]
+                ]
+  :source-paths ["src/clj"]
+  ;:java-source-paths ["src/java"]
+  ;:repl-options {:init-ns corpsfini.core}
+)
