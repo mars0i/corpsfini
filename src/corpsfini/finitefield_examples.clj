@@ -1,7 +1,8 @@
-(ns corpsfini.finitefield-examples
-    (:require [corpsfini.finitefield :as ff]))
+(ns corpsfini.finitefield-examples)
 ;; Examples of polynomial vectors for experiments, testing, etc.
 ;; with functions in algrand.finitefield.
+
+;; These can be used, for example, with finitefield/generate-by-powers
 
 ;; polynomials over F2 (or higher):
 (def poly2a [1 1 0 1 0 0 1 1])

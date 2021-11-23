@@ -25,7 +25,7 @@
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(declare generate-from-x trace degree pad-high-zeros strip-high-zeros
+(declare generate-by-powers trace degree pad-high-zeros strip-high-zeros
          normalize-lengths make-monomial make-zero-poly add-int sub-int
          mult-int expt-int invert-int-nomemo div-int mult-int-poly
          div-int-poly add-poly sub-poly mult-poly-raw mult-poly
@@ -35,14 +35,14 @@
 ;; HIGH-LEVEL FUNCTIONS 
 ;; The ones most handy for experimenting.
 
-;; Examples of primitive polynomials for p: see finitefield_examples.clj .
-(defn generate-from-x
+;; For examples of primitive polynomials for p see finitefield_examples.clj .
+(defn generate-by-powers
   "Returns an infinite sequence of elements from Fm^n, where m is a prime
   number and n is the degree of primitive polynomial p, generated from initial 
   element e as it is multiplied by 1, then the result e*1, and so on.  If e is
   not supplied, it be the polynomial x (which is represented by [0 1]).  That 
   is, the sequence will then consists of x^0 = [1], x^1 = [0 1], x^2 = ... ."
-  ([p m] (generate-from-x p m [0 1]))
+  ([p m] (generate-by-powers p m [0 1]))
   ([p m e] (iterate (partial mult-poly p m e) [1])))
 
 ;; Since I'm restricting the subfield to prime fields, I extract
