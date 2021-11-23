@@ -3,7 +3,7 @@
               [clojure.core.matrix :as mx]
               [utils.genl :as g]))
 
-;; For now, polynomials are Clojure vectors of integers that are elements 
+;; Polynomials are Clojure vectors of integers that are elements 
 ;; of a prime field, with smaller exponents on the left.  
 ;; Later: Possibly generalize to subfields other than prime fields.
 

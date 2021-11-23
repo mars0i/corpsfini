@@ -4,6 +4,9 @@
 
 ;; These can be used, for example, with finitefield/generate-by-powers
 
+;; Polynomials are Clojure vectors of integers that are elements 
+;; of a prime field, with smaller exponents on the left.  
+
 ;; polynomials over F2 (or higher):
 (def poly2a [1 1 0 1 0 0 1 1])
 (def poly2b [0 1 1 1 0 1 1 0])
