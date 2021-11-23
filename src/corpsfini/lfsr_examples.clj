@@ -1,5 +1,5 @@
 ;; Miscellaneous experiments.  Not systematic.
-(ns corpsfini.lfsr
+(ns corpsfini.lfsr-examples
     (:require ;[clojure.math.numeric-tower :as nt]
               [clojure.core.matrix :as mx]
               [algrand.finitefield :as ff]
