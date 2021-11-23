@@ -3,25 +3,6 @@
 ;; Examples of polynomial vectors for experiments, testing, etc.
 ;; with functions in algrand.finitefield.
 
-(defn alanenknuth-string-to-poly
-  "Transform a string in \"Alanen-Knuth\" format--i.e. a string of
-  digits representing polynomial coefficients, with high exponents
-  on the left--into a representation of a polynomial as a vector of
-  integer coefficients with higher exponents on the right.  The
-  asterisk character is treated as the number 10.  [See Alanen &
-  Knuth (1964), Sankhya Series A, v. 26 no. 4, p. 309.]"
-  [ak-str]
-  (mapv 
-    (fn [c] (if (= c \*) 10 (Character/digit c 10)))
-    (reverse ak-str))) ; makes string into seq of chars
-
-(defn alanenknuth-strings-to-polys
-  "Transform a sequence of strings representing polyonomials in \"Alanen-Knuth\"
-  format into a sequence of integer vector representations of the same 
-  polynomials using alanenknuth-string-to-poly."
-  [ak-strs]
-  (mapv alanenknuth-strings-to-polys ak-strs))
-
 ;; polynomials over F2 (or higher):
 (def poly2a [1 1 0 1 0 0 1 1])
 (def poly2b [0 1 1 1 0 1 1 0])
