@@ -9,7 +9,7 @@
                  [aerial.hanami "0.15.1"]
                  [net.mikera/core.matrix "0.62.0"]
                 ]
-  :source-paths ["src/clj/corpsfini"]
+  :source-paths ["src/clj"]
   ;:java-source-paths ["src/java"]
   ;:repl-options {:init-ns corpsfini.core}
 )
