@@ -1,0 +1,37 @@
+(ns corpsfini.clerktest
+    (:require
+      [corpsfini.display :as cfd]
+      [corpsfini.finitefield :as cff]
+      [corpsfini.finitefield-examples :as cfe]
+      [nextjournal.clerk :as clerk]
+      [aerial.hanami.common :as hc :refer [RMV]]
+      [aerial.hanami.templates :as ht]))
+
+
+(cfd/clerk-poly [1 2 0 1 5 45 0 3 1 0 0 0 1 2])
+
+(cfd/clerk-polys [[1 1 0 1] [2 0 2 0 3] [5] [1 2 0 1 5 45 0 3 1 0 0 0 1 2]])
+
+
+;; -----------------------
+
+;; How to start a clerk web server and file watcher:
+
+(comment
+  (nextjournal.clerk/serve! {:browse? true :watch-paths ["src"]})
+  (nextjournal.clerk/show! "src/clj/corpsfini/clerktest.clj")
+)
+
+;; -----------------------
+
+(def point-chart-example
+  (hc/xform ht/point-chart 
+            :UDATA "https://vega.github.io/vega-lite/data/cars.json"
+            :X "Horsepower"
+            :Y "Miles_per_Gallon"
+            :YTITLE "Miles per gallon"
+            :COLOR "Origin"))
+
+
+;; Click on the three-dots button to the right of the chart for useful options.
+(clerk/vl point-chart-example)
