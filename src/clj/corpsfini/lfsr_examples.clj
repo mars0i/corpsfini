@@ -2,7 +2,7 @@
 (ns corpsfini.lfsr-examples
     (:require ;[clojure.math.numeric-tower :as nt]
               [clojure.core.matrix :as mx]
-              [algrand.finitefield :as ff]
+              [corpsfini.finitefield :as ff]
               [utils.convertbase :as cb]
     ))
 
@@ -87,16 +87,76 @@
 
 ;; FIXME works but not right
 (defn tausworthe12
-  "Returns a paid containing the new state and a new output number as
+  "Returns a pair containing the new state and a new output number as
   a Clojure fraction.  (Pass to a function such as double to convert to a 
   floating point number.)"
-  [wordsize decimation state]
+  [decimation wordsize state]
   (let [states (linrec12seq state)
         bitseq (map last states)
         decimated-bitseq (drop decimation bitseq) ; IS THIS RIGHT?
         word-bits (take wordsize decimated-bitseq)   ; IS THIS RIGHT?
         newstate (first (drop (+ decimation wordsize) states))]; IS THIS RIGHT?
     [(cb/sum-digits 2 [0] word-bits) newstate]))
+
+(defn base-n-tausworthe
+  "Given intseq, a potentially infinite sequence of integers in the given 
+  base, drops the first decimation integers, and then uses wordsize integers
+  to construct a Clojure fraction by treating each the integers as subsquent
+  digits in a \"decimal\" float representation of a number in [0,1).  Returns
+  a pair containing the fraction and the new intseq with decimation integers 
+  removed.  Tips: (1) Pass the fraction to double to convert to a floating
+  point number.  (2) Set base to 2 and use a sequence of bits to make a true
+  Tausworthe generator."
+  [base decimation wordsize intseq]
+  (let [newseq (drop decimation intseq)
+        wordbits (take wordsize newseq)]
+    [(cb/sum-digits base [0] wordbits) newseq]))
+
+(defn tausworthe
+  "Given bitseq, a potentially infinite sequence of 0's and 1's, drops the 
+  first decimation bits, and then uses wordsize bits to construct a Clojure
+  fraction by treating each the bits as subsquent digits in a binary \"decimal\"
+  float representation of a number in [0,1).  Returns a pair containing the 
+  fraction and the new bitseq with decimation bits removed.  Tip: Pass the 
+  fraction to double to convert to a floating point number."
+  [decimation wordsize bitseq]
+  (base-n-tausworthe 2 wordsize decimation bitseq))
+
+;(defn decimate-sequence
+;  "Given a sequence of integers, returns a sequence of sequences, each of
+;  size wordsize, at intervals of length decimation.  (Actually just a wrapper
+;  with a convenient new name for the standard Clojure function 'partition'.)"
+;  [wordsize decimation intseq]
+;  (partition wordsize decimation intseq))
+
+(defn base-n-tausworthe-fracts
+  "Given intseq, a potentially infinite sequence of integers in the given
+  base, returns a sequence of fractions, each created by using wordsize 
+  integers from the sequence at a position decimation steps from the last 
+  word.  Creates the fractions by treating each the integers as subsquent
+  digits in a \"decimal\" float representation of a number in [0,1).  Pass
+  the fractions to double to convert to floating point numbers."
+  [base decimation wordsize intseq]
+  (map (partial cb/sum-digits base [0])         ; convert to fractions
+       (partition wordsize decimation intseq))) ; word seqs, decimation-shifted
+
+(defn tausworthe-fracts 
+  "Given bitseq, a potentially infinite sequence of 0's and 1's, returns 
+  a sequence of fractions, each created by using wordsize bits from the 
+  sequence at a position decimation steps from the last word.  Creates 
+  the fractions by treating each the bits as subsquent digits in a binary
+  \"decimal\" float representation of a number in [0,1).  Pass the fractions
+  to double to convert to floating point numbers."
+  [decimation wordsize bitseq]
+  (base-n-tausworthe-seq 2 decimation wordsize bitseq))
+
+(defn tauseworthe-seq
+"Given bitseq, a potentially infinite sequence of 0's and 1's, returns 
+  a sequence of doubles, each created by using wordsize bits from the 
+  sequence at a position decimation steps from the last word.  See
+  tausworthe-fracts for more information."
+  [decimation wordsize bitseq]
+  (map double (tausworthe-fracts decimation wordsize bitseq)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;
 
