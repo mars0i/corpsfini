@@ -102,7 +102,7 @@
   "Given intseq, a potentially infinite sequence of integers in the given 
   base, drops the first decimation integers, and then uses wordsize integers
   to construct a Clojure fraction by treating each the integers as subsquent
-  digits in a \"decimal\" float representation of a number in [0,1).  Returns
+  digits in a decimal float representation of a number in [0,1).  Returns
   a pair containing the fraction and the new intseq with decimation integers 
   removed.  Tips: (1) Pass the fraction to double to convert to a floating
   point number.  (2) Set base to 2 and use a sequence of bits to make a true
@@ -115,7 +115,7 @@
 (defn tausworthe
   "Given bitseq, a potentially infinite sequence of 0's and 1's, drops the 
   first decimation bits, and then uses wordsize bits to construct a Clojure
-  fraction by treating each the bits as subsquent digits in a binary \"decimal\"
+  fraction by treating each the bits as subsquent digits in a binary decimal
   float representation of a number in [0,1).  Returns a pair containing the 
   fraction and the new bitseq with decimation bits removed.  Tip: Pass the 
   fraction to double to convert to a floating point number."
@@ -131,30 +131,32 @@
 
 (defn base-n-tausworthe-fracts
   "Given intseq, a potentially infinite sequence of integers in the given
-  base, returns a sequence of fractions, each created by using wordsize 
-  integers from the sequence at a position decimation steps from the last 
-  word.  Creates the fractions by treating each the integers as subsquent
-  digits in a \"decimal\" float representation of a number in [0,1).  Pass
-  the fractions to double to convert to floating point numbers."
+  base, returns a sequence of fractions (clojure.lang.Ratio), each created
+  using wordsize integers from the sequence at a position decimation
+  steps from beginning of the last word.  Creates the fractions by treating
+  each the integers as subsquent digits in a decimal representation of
+  a number in [0,1).  Example: the base three sequence [0 2] => 2/9."
   [base decimation wordsize intseq]
   (map (partial cb/sum-digits base [0])         ; convert to fractions
        (partition wordsize decimation intseq))) ; word seqs, decimation-shifted
 
 (defn tausworthe-fracts 
   "Given bitseq, a potentially infinite sequence of 0's and 1's, returns 
-  a sequence of fractions, each created by using wordsize bits from the 
-  sequence at a position decimation steps from the last word.  Creates 
-  the fractions by treating each the bits as subsquent digits in a binary
-  \"decimal\" float representation of a number in [0,1).  Pass the fractions
-  to double to convert to floating point numbers."
+  a sequence of fractions (clojure.lang.Ratio), each created using 
+  wordsize bits from the sequence at a position decimation steps from the
+  beginning of the last word.  Creates the fractions by treating each the bits
+  as subsquent digits in a binary decimal representation of a number 
+  in [0,1).  Example: [1 0 1] => 5/8."
   [decimation wordsize bitseq]
-  (base-n-tausworthe-seq 2 decimation wordsize bitseq))
+  (base-n-tausworthe-fracts 2 decimation wordsize bitseq))
 
-(defn tauseworthe-seq
-"Given bitseq, a potentially infinite sequence of 0's and 1's, returns 
-  a sequence of doubles, each created by using wordsize bits from the 
-  sequence at a position decimation steps from the last word.  See
-  tausworthe-fracts for more information."
+(defn tausworthe-floats
+  "Given bitseq, a potentially infinite sequence of 0's and 1's, returns a 
+  sequence of floating-point numbers (java.lang.Double), each created 
+  using wordsize bits from the sequence at a position decimation steps from
+  the beginning of the last word.  Creates the doubles by treating each the
+  bits as subsquent digits in a binary decimal representation of a number 
+  in [0,1).  Example: [1 0 1] => 0.625."
   [decimation wordsize bitseq]
   (map double (tausworthe-fracts decimation wordsize bitseq)))
 
