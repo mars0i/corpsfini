@@ -11,3 +11,11 @@
     (if (<= n 0)
       acc
       (recur (dec n) (f acc)))))
+
+
+;; Doesn't work:
+;(defmacro add-to-docstr
+;  "Appends string addlstr onto end of existing docstring for symbol sym.
+;  (Tip: Consider beginning addlstr with \"\\n  \".)"
+;  [sym addlstr] 
+;  `(alter-meta! #'~sym update-in [:doc] str ~addlstr))
