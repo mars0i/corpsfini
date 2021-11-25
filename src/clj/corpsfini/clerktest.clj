@@ -13,18 +13,25 @@
 
 (cfd/clerk-polys [[1 1 0 1] [2 0 2 0 3] [5] [1 2 0 1 5 45 0 3 1 0 0 0 1 2]])
 
-(def fs (lfe/tausworthe-floats 12 12
-                               (map first 
-                                    (lfe/linrec12seq (repeat 12 1)))))
+(def taus-floats (lfe/tausworthe-floats 12 12
+                                        (map first 
+                                             (lfe/linrec12seq (repeat 12 1)))))
 
-;(def tausworthe-chart
-;  (hc/xform ht/point-chart 
-;            :DATA ;; fs in data form for hanami
-;            :X "Horsepower"
-;            :Y "Miles_per_Gallon"
-;            :YTITLE "Miles per gallon"
-;            :COLOR "Origin"))
+;; Note the keys must be strings:
+(def testdata [{"a" 35, "b" 42, "yow" 1}, {"a" 15, "b" 48, "yow" 2}])
 
+(def taus-pair-maps (cfd/tuples-to-vegalite-data (partition 2 3 taus-floats)))
+
+(def taus-chart
+  (hc/xform ht/point-chart 
+            :DATA (take 500 taus-pair-maps)
+            :X "0"
+            :Y "1"
+            ;:YTITLE "Pairs of subsequent of 12-bit Tausworthe outputs."
+            ;:COLOR "yow"
+            ))
+
+(clerk/vl taus-chart)
 
 
 ;; -----------------------
