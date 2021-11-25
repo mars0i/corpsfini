@@ -46,4 +46,10 @@
   [polys]
   (clerk/tex (texify-polys polys)))
 
+(defn tuple-to-vegalite-data
+  [tuple]
+  (zipmap (map str (range)) tuple))
 
+(defn tuples-to-vegalite-data
+  [tuples]
+  (map tuple-to-vegalite-data tuples))
