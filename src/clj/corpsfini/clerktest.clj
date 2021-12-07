@@ -22,6 +22,7 @@
 
 (def taus-pair-maps (cfd/tuples-to-vegalite-data (partition 2 3 taus-floats)))
 
+;; A Hanami chart:
 (def taus-chart
   (hc/xform ht/point-chart 
             :DATA (take 500 taus-pair-maps)
@@ -32,6 +33,26 @@
             ))
 
 (clerk/vl taus-chart)
+
+;; It would be nice to be able to produce a 3-D plot in order to illustrate
+;; 3-D lattice effects.  The utility of this is illustrated by the plots on 
+;; page 675 of this paper:
+;;
+;; @Article{MatsumotoEtAl:PRNGimpossibilityCompromise,
+;;  author =	{Matsumoto, Makoto and Saito, Mutsuo and Haramoto, Hiroshi and Nishimura, Takuji},
+;;  title =	{Pseudorandom Number Generation: Impossibility and Compromise},
+;;  journal =	{Journal of Universal Computer Science},
+;;  year =	{2006},
+;;  volume =	{12},
+;;  number =	{6},
+;;  pages =	{672-690},
+;;}
+;;
+;; It's apparently possible but not documented that you can make 3-D plots
+;; in vega-lite:
+;; https://github.com/vega/vega/issues/1738
+;;
+;; Another option for 3-D might be https://github.com/thi-ng/geom .
 
 
 ;; -----------------------
