@@ -29,7 +29,7 @@
          normalize-lengths make-monomial make-zero-poly add-int sub-int
          mult-int expt-int invert-int-nomemo div-int mult-int-poly
          div-int-poly add-poly sub-poly mult-poly-raw mult-poly
-         expt-poly div-poly mod-poly =-poly)
+         expt-poly div-poly mod-poly =-poly suborder)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; HIGH-LEVEL FUNCTIONS 
@@ -72,8 +72,8 @@
   (/ m (nt/gcd m k)))
 
 (defn degree
-  "Returns the degree of (vector) polynomial p, or nil if all zeros, i.e.
-  it represents the zero polynomial."
+  "Returns the degree of (vector) polynomial p, or -1 if all zeros, i.e.
+  if it represents the zero polynomial."
   [p]
   (let [len (count p)]
     (loop [i (dec len)]
