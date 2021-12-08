@@ -11,12 +11,9 @@ estimation, I'd suggest using one of WELL generators developed by
 Panneton, L'Ecuyer, and Matsumoto (Pierre L'Ecuyer's website is a good
 starting point), or an xoshiro generator from Sebastiano Vigna.  There
 are other recent generators worth considering, and a Mersenne Twister
-should be OK if it's initialized properly, as it probably is in most
-popular libraries.  If you're looking for a cryptographic pseudorandom
-number generator, I don't have advice, but good advice should be easy to
-find.
-
-
+should be OK if it's initialized properly (as it probably is in most
+popular libraries).  If you're looking for a cryptographic pseudorandom
+number generator, good advice should be easy to find elsewhere.
 
 ## License
 
