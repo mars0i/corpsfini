@@ -7,7 +7,7 @@
                  [org.clojure/math.numeric-tower "0.0.4"]
 		 [io.github.nextjournal/clerk "0.3.233"]
                  [aerial.hanami "0.15.1"]
-                 [net.mikera/core.matrix "0.62.0"]
+                 [net.mikera/core.matrix "0.63.0"]
                 ]
   :source-paths ["src/clj"]
   ;:java-source-paths ["src/java"]
