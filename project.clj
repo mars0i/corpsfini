@@ -3,7 +3,7 @@
   :url "https://github.com/mars0i/corpsfini"
   :license {:name "Gnu General Public License version 3.0"
             :url "http://www.gnu.org/copyleft/gpl.html"}
-  :dependencies [[org.clojure/clojure "1.10.3"]
+  :dependencies [[org.clojure/clojure "1.11.1"]
                  [org.clojure/math.numeric-tower "0.0.4"]
 		 [io.github.nextjournal/clerk "0.3.233"]
                  [aerial.hanami "0.15.1"]
