@@ -13,3 +13,9 @@
   ;:java-source-paths ["src/java"]
   ;:repl-options {:init-ns corpsfini.core}
 )
+
+
+;; Used to silence annoying slf4j warnings with Neanderthal, but
+;; not working here:
+;[com.taoensso/timbre "4.10.0"]
+;[com.fzakaria/slf4j-timbre "0.3.19"]
